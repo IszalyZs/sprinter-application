@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Super Sprinter 3000</title>
+</head>
+<body>
+<h2>Super Sprinter 3000</h2>
+<form>
+    <table>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Story Title</th>
+            <th>User Story</th>
+            <th>Acceptance Criteria</th>
+            <th>Business Value</th>
+            <th>Estimation</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody th:each="user: ${userStory}">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getTitle()}"></td>
+        <td th:text="${user.getStory()}"></td>
+        <td th:text="${user.getAcceptanceCriteria()}"></td>
+        <td th:text="${user.getBusinessValue()}"></td>
+        <td th:text="${user.getEstimation()}"></td>
+        <td th:text="${user.getStatus()}"></td>
+        <td><a th:href="@{/story/{id} (id=${user.getId()})}">Update User Story</a></td>
+        </tbody>
+    </table>
+    <p><a th:href="@{/story}">Add new User Story</a></p>
+</form>
+</body>
+</html>

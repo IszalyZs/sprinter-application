@@ -1,0 +1,1 @@
+INSERT INTO user_story (acceptance_criteria,business_value,estimation,status,title,story) VALUES ('Acceptance criteria',100,2,'IN_PROGRESS','Title','Story');

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new User Story</title>
+</head>
+<body>
+<form th:action="@{/story}" method="post" th:object="${userStoryDTO}">
+    <h2 th:text="${userStoryDTO.getId()==null ? 'Add new User Story': 'Update User Story'}">Add User Story</h2>
+    <input type="hidden" th:field="*{id}">
+    <p><label for="title">Story Title:</label></br>
+        <input type="text" id="title" name="title" th:field="*{title}"></p>
+    <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color:red"></span>
+
+    <p><label for="story">User Story:</label></br>
+        <textarea rows="3" id="story" name="story" th:field="*{story}"></textarea></p>
+    <span th:if="${#fields.hasErrors('story')}" th:errors="*{story}" style="color:red"></span>
+
+    <p><label for="acceptanceCriteria">Acceptance Criteria:</label></br>
+        <textarea rows="5" id="acceptanceCriteria" name="acceptanceCriteria"
+                  th:field="*{acceptanceCriteria}"></textarea></p>
+    <span th:if="${#fields.hasErrors('acceptanceCriteria')}" th:errors="*{acceptanceCriteria}" style="color:red"></span>
+
+    <p><label for="businessValue">Business value:</label></br>
+        <input type="number" id="businessValue" name="businessValue" min="100" max="1500" step="100" size="3px"
+               th:field="*{businessValue}"></p>
+    <span th:if="${#fields.hasErrors('businessValue')}" th:errors="*{businessValue}" style="color:red"></span>
+
+    <p><label for="estimation">Estimation:</label></br>
+        <input type="number" id="estimation" name="estimation" min="0.5" max="40.0" step="0.5" size="3px"
+               th:field="*{estimation}">
+    </p>
+
+    <th:block th:if="${userStoryDTO.getId()!=null}">
+        <p><label for="status">Status:</label></br>
+            <select id="status" name="status" th:field="*{status}">
+                <option value="PLANNING">Planning</option>
+                <option value="TODO">Todo</option>
+                <option value="IN_PROGRESS">In progress</option>
+                <option value="REVIEW">Review</option>
+                <option value="DONE">Done</option>
+            </select></p>
+    </th:block>
+
+    <span th:if="${#fields.hasErrors('estimation')}" th:errors="*{estimation}" style="color:red"></span>
+
+    <p>
+        <button type="submit" th:text="${userStoryDTO.getId()==null ? 'Add new User Story': 'Update User Story'}">Add new User Story</button>
+    </p>
+</form>
+
+</body>
+</html>
